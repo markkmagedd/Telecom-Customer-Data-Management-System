@@ -10,8 +10,8 @@ app.get('/', async (req, res) => {
     const isStoredProcedure = false;
     try {
         const result = await executeQuery(query, values, paramNames, isStoredProcedure);
-        console.log(result.recordsets);
-        res.json(result);
+        console.log(result.recordset);
+        res.json(result.recordset);
     } catch (error) {
         console.error(error);
     }

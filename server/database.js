@@ -5,7 +5,7 @@ async function executeQuery(query, values = [], paramNames = [], isStoredProcedu
     try {
       const pool = await sql.connect({
         server: "192.168.1.4",
-        database: "master",
+        database: "Team102_test",
         user: "sa",
         password: "VeryStr0ngP@ssw0rd",
         options: {
