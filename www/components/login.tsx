@@ -43,8 +43,8 @@ export function Login() {
               <Input type="number" placeholder="01207451280" autoComplete="off" value={mobileNumber} onChange={((e) => {setMobileNumber(e.target.valueAsNumber)})} />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="new">Password</Label>
-              <Input type="password" value={password} onChange={((e) => {setPassword(e.target.value)})} />
+              <Label>Password</Label>
+              <Input type="text" value={password} onChange={((e) => {setPassword(e.target.value)})} />
             </div>
             </form>
           </CardContent>
