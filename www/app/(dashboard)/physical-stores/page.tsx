@@ -14,12 +14,12 @@ export default async function Page() {
     return (
         <main className="p-6">
         <h1 className="font-bold text-3xl">Physical Stores</h1>
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="flex flex-col gap-4">
         <div>
             {
                 res.data.map((store) => {
                     return (
-                        <div key={store.shopID}>
+                        <div key={store.shopID} className="mt-4">
                         <StoreCard shopId={store.shopID} address={store.address} working_hours={store.working_hours} />
                         </div>
                     )
