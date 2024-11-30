@@ -1,5 +1,4 @@
 "use client"
-import { Button } from "./ui/button"
 
 export function StoreCard({ shopId, address, working_hours } : { shopId: string, address: string, working_hours: string}) {
     return (

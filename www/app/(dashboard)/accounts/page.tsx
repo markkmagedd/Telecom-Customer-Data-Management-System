@@ -1,8 +1,8 @@
 "use server"
-import { ProfileComponent } from "@/components/profile-card";
+import { CustomerAccount } from "@/components/customer-account";
 
 export default async function Page() {
-    const res = await fetch('http://localhost:8080/all-customer-accounts');
+    const res = await fetch('http://localhost:8080/account-plan');
     const data = await res.json();
     if(data.success === false) {
         return (
@@ -13,15 +13,17 @@ export default async function Page() {
     }
     return (
         <main className="p-6">
-        <h1 className="font-bold text-3xl">Customer Accounts</h1>
+        <h1 className="font-bold text-3xl">Customers Accounts</h1>
         <div className="flex flex-col gap-4 mt-4">
-        {data.data.map((account) => {
+       {
+        data.data.map((account:any) => {
             return (
-                <div key={account.nationalID}>
-                <ProfileComponent firstName={account.first_name} lastName={account.lastName} mobileNumber={account.mobileNo}/>
+                <div key={account.mobileNo}>
+                    <CustomerAccount mobileNumber={account.mobileNo} name={account.name} description={account.description} />
                 </div>
             )
-        })}
+        })
+       }
         </div>
         </main>
     )

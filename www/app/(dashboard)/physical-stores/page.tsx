@@ -17,7 +17,7 @@ export default async function Page() {
         <div className="flex flex-col gap-4">
         <div>
             {
-                res.data.map((store) => {
+                res.data.map((store: any) => {
                     return (
                         <div key={store.shopID} className="mt-4">
                         <StoreCard shopId={store.shopID} address={store.address} working_hours={store.working_hours} />
