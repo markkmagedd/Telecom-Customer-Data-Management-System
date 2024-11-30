@@ -43,7 +43,6 @@ app.get("/all-customer-accounts", async (req, res) => {
   try {
     await mssql.connect(config);
     const result = await mssql.query("Select * from allCustomerAccounts");
-
     res.json({
       error: null,
       success: true,
@@ -125,7 +124,6 @@ app.post("/account-plan-date", async (req, res) => {
   //1.6
   try {
     const { date, planId } = req.body;
-    console.log(date, planId);
     if (!planId || !date) {
       return res.status(400).json({
         success: false,
