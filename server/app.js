@@ -4,8 +4,10 @@ const cors = require("cors");
 const adminUsername = "admin";
 const adminPassword = "admin";
 const mssql = require("mssql");
+const bodyParser = require("body-parser")
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
 const config = {
@@ -123,6 +125,7 @@ app.post("/account-plan-date", async (req, res) => {
   //1.6
   try {
     const { date, planId } = req.body;
+    console.log(date, planId);
     if (!planId || !date) {
       return res.status(400).json({
         success: false,
