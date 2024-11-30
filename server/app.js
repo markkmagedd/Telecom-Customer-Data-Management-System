@@ -123,6 +123,7 @@ app.get("/account-plan", async (req, res) => {
 app.post("/account-plan-date", async (req, res) => {
   //1.6
   try {
+    var err;
     const { date, planId } = req.body;
     if (!planId || !date) {
       return res.status(400).json({
@@ -140,9 +141,12 @@ app.post("/account-plan-date", async (req, res) => {
     const result = await request.query(
       "SELECT * FROM dbo.Account_Plan_date( @date , @planId )"
     );
-
+    if (result.recordset.length === 0) {
+      err = "Account Not Found !";
+    }
+    console.log(err);
     res.json({
-      error: null,
+      error: err,
       success: true,
       data: result.recordset,
     });
