@@ -13,7 +13,6 @@ export default async function Page() {
     }
     return (
         <main className="p-6">
-        {/* {JSON.stringify(data.data[0])} */}
         <h1 className="font-bold text-3xl">Customer Accounts</h1>
         <div className="flex flex-col gap-4 mt-4">
         {data.data.map((account) => {
