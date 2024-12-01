@@ -63,7 +63,7 @@ export default function LayoutNavigation({ children }: { children: React.ReactNo
                 </div>
                   Wallets
                 </Link>
-                <Link href="/" className={`${path.includes('/settings') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href="/transactions" className={`${path.includes('/transactions') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
                 <ArrowLeftRight className="h-4 w-4" />
                 </div>
