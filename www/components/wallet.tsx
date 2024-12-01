@@ -1,6 +1,9 @@
 "use client"
 import { Button } from "./ui/button"
 import { ArrowRight } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card"
+import { Phone, Wallet2 } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 export function Wallet({ firstName, lastName, mobileNumber, currentBalance, currency } : { firstName: string, lastName: string, mobileNumber: string, currentBalance: number, currency: string}) {
     return (
@@ -22,3 +25,36 @@ export function Wallet({ firstName, lastName, mobileNumber, currentBalance, curr
         </>
     )
 }
+
+export function WalletCard({ firstName, lastName, mobileNumber, currentBalance, currency } : { firstName: string, lastName: string, mobileNumber: string, currentBalance: number, currency: string}) {
+  return (
+    <Card className="w-full max-w-md">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">Wallet Details</CardTitle>
+        <Wallet2 className="h-4 w-4 text-muted-foreground" />
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center space-x-4">
+          <Avatar className="h-12 w-12">
+            <AvatarFallback>{firstName[0]}{lastName[0]}</AvatarFallback>
+          </Avatar>
+          <div className="space-y-1">
+            <p className="text-sm font-medium leading-none">{firstName} {lastName}</p>
+            <p className="flex items-center text-sm text-muted-foreground">
+              <Phone className="mr-1 h-3 w-3" />
+              {mobileNumber}
+            </p>
+          </div>
+        </div>
+        <div className="mt-4 flex items-center justify-between">
+          <p className="text-sm font-medium text-muted-foreground">Current Balance</p>
+          <p className="text-2xl font-bold">
+            {new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(currentBalance)}
+          </p>
+        </div>
+        <Button variant={"outline"} className="w-full mt-2">View Cashbacks</Button>
+      </CardContent>
+    </Card>
+  )
+}
+

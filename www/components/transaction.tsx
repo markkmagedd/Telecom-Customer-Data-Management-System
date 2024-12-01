@@ -1,6 +1,9 @@
 "use client"
 import { Button } from "./ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, CreditCardIcon, DollarSign } from "lucide-react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
+import { CalendarIcon } from "lucide-react"
+import { Badge } from "./ui/badge"
 
 export function Transaction({ paymentID, amount, date, method, status, mobileNo } : { paymentID: string, amount: number, date: string, method: string, status: string, mobileNo: number}) {
     return (
@@ -22,3 +25,61 @@ export function Transaction({ paymentID, amount, date, method, status, mobileNo 
         </>
     )
 }
+
+interface TransactionCardProps {
+    method: string
+    amount: number
+    mobileNo: string
+    date: string
+    status: "successful" | "pending" | "rejected",
+  }
+
+export default function TransactionCard({
+    method,
+    amount,
+    mobileNo,
+    date,
+    status,
+  }: TransactionCardProps) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">Transaction Details</CardTitle>
+          <Badge className="rounded-sm"
+            variant={status === "successful" ? "default" : status === "pending" ? "secondary" : "destructive"}
+          >
+            {status}
+          </Badge>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center space-x-4">
+            <div>
+                {
+                    method === "credit" && 
+                    <>
+                    <CreditCardIcon className="size-4" />
+                    </>
+                }
+                {
+                    method === "cash" &&
+                    <>
+                    <DollarSign className="size-4" />
+                    </>
+                }
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium leading-none">{method}</p>
+              <p className="text-sm text-muted-foreground">{mobileNo}</p>
+            </div>
+            <div className="ml-auto font-medium">
+              {amount.toFixed(2)} EGP
+            </div>
+          </div>
+          <div className="mt-4 flex items-center text-sm text-muted-foreground">
+            <CalendarIcon className="mr-1 h-4 w-4" />
+            {date}
+          </div>
+        </CardContent>
+      </Card>
+    )
+  }

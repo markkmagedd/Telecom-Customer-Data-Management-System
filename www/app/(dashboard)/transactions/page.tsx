@@ -1,6 +1,7 @@
 "use server"
 import { StoreCard } from "@/components/store-card";
 import { Transaction } from "@/components/transaction";
+import TransactionCard from "@/components/transaction";
 
 export default async function Page() {
     const data = await fetch("http://localhost:8080/account-payments");
@@ -15,8 +16,7 @@ export default async function Page() {
     return (
         <main className="p-6">
         <h1 className="font-bold text-3xl">Transactions</h1>
-        <div className="flex flex-col gap-4">
-            {JSON.stringify(res.data)}
+        <div className="flex gap-4">
         {/* <div>
             {
                 res.data.map((store: any) => {
@@ -28,12 +28,13 @@ export default async function Page() {
                 })
             }
         </div> */}
-        <div>
+        <div className="flex flex-wrap gap-4 mt-4">
             {
                 res.data.map((transaction:any) => {
                     return (
-                        <div key={transaction.paymentID}> 
-                        <Transaction paymentID={transaction.paymentID} amount={transaction.amount} date={transaction.date_of_payment} method={transaction.payment_method} status={transaction.status} mobileNo={transaction.mobileNo}/>
+                        <div className="flex flex-auto" key={transaction.paymentID}> 
+                        {/* <Transaction paymentID={transaction.paymentID} amount={transaction.amount} date={transaction.date_of_payment} method={transaction.payment_method} status={transaction.status} mobileNo={transaction.mobileNo}/> */}
+                        <TransactionCard amount={transaction.amount} date={transaction.date_of_payment} method={transaction.payment_method} status={transaction.status} mobileNo={transaction.mobileNo} />
                         </div>
                     )
                 })
