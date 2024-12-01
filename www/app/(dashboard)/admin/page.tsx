@@ -3,6 +3,7 @@ import { AccountInput } from "@/components/account-input";
 import { MobileDateInput } from "@/components/mobile-date-input";
 import { RemoveBenefitsInput } from "@/components/remove-benefits";
 import { ListSmsInput } from "@/components/sms-input";
+import { WalletIdInput } from "@/components/wallet-id-input";
 
 export default async function Page() {
     return (
@@ -18,6 +19,8 @@ export default async function Page() {
         <ListSmsInput />
         <h1 className="font-bold text-xl">Number of Accepted Payments</h1>
         <AcceptedPaymentsInput />
+        <h1 className="font-bold text-xl">Show Amount of Cashback Returned</h1>
+        <WalletIdInput />
         </div>
         </main>
     )

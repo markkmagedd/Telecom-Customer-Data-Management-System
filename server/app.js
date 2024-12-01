@@ -411,7 +411,7 @@ app.post("/wallet-Cashback-amount", async (req, res) => {
     request.input("walletId", mssql.Int, walletId);
 
     const result = await request.query(`
-        DECLARE @result BIT;
+        DECLARE @result int;
         SET @result = dbo.Wallet_Cashback_Amount(@walletId , @planId);
         SELECT @result AS result;
       `);
@@ -451,7 +451,7 @@ app.post("/wallet-transfer-amount", async (req, res) => {
     request.input("endDate", mssql.Date, endDate);
 
     const result = await request.query(`
-        DECLARE @result BIT;
+        DECLARE @result int;
         SET @result = dbo.Wallet_Transfer_Amount(@walletId , @startDate , @endDate);
         SELECT @result AS result;
       `);
@@ -578,19 +578,26 @@ app.post("/account-login-validation", async (req, res) => {
     const request = new mssql.Request();
 
     request.input("mobileNum", mssql.Char(11), mobileNum);
-    request.input("password", mssql.VarCharChar(50), password);
+    request.input("password", mssql.VarChar(50), password);
 
     const result = await request.query(`
           DECLARE @result BIT;
           SET @result = dbo.AccountLoginValidation(@mobileNum , @password);
           SELECT @result AS result;
         `);
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset[0].result === false) {
+      res.json({
+        error: "Incorrect Username Or Password !!",
+        success: false,
+        data: result.recordset,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -1019,7 +1026,7 @@ app.post("/initiate-plan-payment", async (req, res) => {
 
     const result = await request.query(
       "Exec Initiate_plan_payment @mobileNum, @amount, @paymentMethod,@planId"
-    ); //check why the func is not working
+    );
 
     res.json({
       error: null,
