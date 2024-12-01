@@ -14,7 +14,13 @@ export default async function Page({ params, searchParams } : { params: { mobile
         })
     });
     const data = await res.json(); 
-    console.log(data);
+    if(data.success === false) {
+        return (
+            <main className="p-6">
+            <h1 className="font-bold text-xl">{data.error}</h1>
+            </main>
+        )
+    }
     return (
         <main className="p-6">
         {
