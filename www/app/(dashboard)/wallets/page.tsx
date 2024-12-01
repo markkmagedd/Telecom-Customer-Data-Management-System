@@ -13,7 +13,7 @@ export default async function Page() {
                 data.data.map((wallet:any) => {
                     return (
                         <div className="flex flex-auto" key={wallet.walletID}>
-                        <WalletCard firstName={wallet.first_name} lastName={wallet.last_name} mobileNumber={wallet.mobileNo} currentBalance={wallet.current_balance} currency={wallet.currency} />
+                        <WalletCard walletId={wallet.walletID} firstName={wallet.first_name} lastName={wallet.last_name} mobileNumber={wallet.mobileNo} currentBalance={wallet.current_balance} currency={wallet.currency} />
                         </div>
                     )
                 })

@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "./ui/card"
 import { Phone, Wallet2 } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Link from "next/link"
 
 export function Wallet({ firstName, lastName, mobileNumber, currentBalance, currency } : { firstName: string, lastName: string, mobileNumber: string, currentBalance: number, currency: string}) {
     return (
@@ -26,7 +27,7 @@ export function Wallet({ firstName, lastName, mobileNumber, currentBalance, curr
     )
 }
 
-export function WalletCard({ firstName, lastName, mobileNumber, currentBalance, currency } : { firstName: string, lastName: string, mobileNumber: string, currentBalance: number, currency: string}) {
+export function WalletCard({ firstName, lastName, mobileNumber, currentBalance, currency, walletId } : { firstName: string, lastName: string, mobileNumber: string, currentBalance: number, currency: string, walletId: string}) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -52,7 +53,10 @@ export function WalletCard({ firstName, lastName, mobileNumber, currentBalance, 
             {new Intl.NumberFormat('en-US', { style: 'currency', currency: currency }).format(currentBalance)}
           </p>
         </div>
-        <Button variant={"outline"} className="w-full mt-2">View Cashbacks</Button>
+        <Button variant={"outline"} className="w-full mt-2" asChild>
+          <Link href={`/wallets/${walletId}`}>
+          View Cashbacks
+          </Link></Button>
       </CardContent>
     </Card>
   )
