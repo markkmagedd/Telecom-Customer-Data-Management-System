@@ -26,7 +26,18 @@ export default async function Page({ params, searchParams } : { params: { mobile
         }
         <div className="flex flex-col space-y-3">
         <h1 className="font-bold text-xl">Total Usage Since {searchParams?.date}</h1>
-        <p className="text-muted-foreground">{JSON.stringify(data.data[0])}</p>
+        {
+            data.data.map((x:any) => {
+                return (
+                    <>
+                    <p className="text-muted-foreground"> Plan ID :  {x.planID}</p>
+                    <p className="text-muted-foreground"> Total Data :  {x["total data"]}</p>
+                    <p className="text-muted-foreground"> Total Minutes :  {x["total mins"]}</p>
+                    <p className="text-muted-foreground"> Total SMS :  {x["total SMS"]}</p>
+                    </>
+                )
+            })
+        }
         </div>
         </main>
     )

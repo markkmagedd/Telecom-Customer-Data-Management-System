@@ -24,6 +24,20 @@ export default async function Page({ params, searchParams } : { params: { mobile
              <h1 className="font-bold text-xl">No Customer account Found!</h1>
             </>
         } */}
+        {
+            data.success === true 
+            && 
+            <>
+            <h1 className="font-bold text-xl">Removed All Benefits</h1>
+            </>
+        } 
+        {
+            data.success === false 
+            &&
+            <>
+            <h1 className="font-bold text-xl">Failed to remove all benefits</h1>
+            </>
+        } 
         {JSON.stringify(data)}
         </main>
     )

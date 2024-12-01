@@ -17,7 +17,7 @@ export function ListSmsInput() {
             <form className="flex w-full items-center gap-4" onSubmit={redirectToAccounts}>
             <Input required placeholder="Mobile Number" value={mobileNumber} onChange={((e) => {setMobileNumber(e.target.value)})}/>
             <Button type="submit">
-                List All SMS
+                List SMS Offers
             </Button>
             </form>
         </div>
