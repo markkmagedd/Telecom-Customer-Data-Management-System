@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Wallet } from "@/components/wallet";
 import {WalletCard} from "@/components/wallet";
+import Link from "next/link";
 
 export default async function Page() {
     const res = await fetch('http:localhost:8080/customer-wallet');
@@ -7,7 +9,13 @@ export default async function Page() {
     return (
         <main className="p-6">
             <h1 className="font-bold text-2xl">Wallets</h1>
-            {/* {JSON.stringify(data.data)} */}
+            <div className="mt-4">
+            <Button asChild>
+                <Link href="/cashback-transactions">
+                View All Cashback Transactions
+                </Link>
+            </Button>
+            </div>
             <div className="flex flex-wrap gap-4 mt-4">
             {
                 data.data.map((wallet:any) => {
