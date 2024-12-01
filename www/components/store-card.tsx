@@ -1,6 +1,6 @@
 "use client"
 
-export function StoreCard({ shopId, address, working_hours } : { shopId: string, address: string, working_hours: string}) {
+export function StoreCard({ shopId, voucherId, voucherValue, working_hours } : { shopId: string, voucherId: string, voucherValue: string, working_hours: string}) {
     return (
         <>
         <div 
@@ -10,7 +10,7 @@ export function StoreCard({ shopId, address, working_hours } : { shopId: string,
          Store ID : {shopId}  
         </p>
         <div className="mt-1 flex">
-        <p className="text-sm text-muted-foreground">{address}</p>
+        <p className="text-sm text-muted-foreground">Voucher ID : {voucherId}, Voucher Value : {voucherValue}</p>
         </div>
         </div>
         <div className="ml-auto mr-5">

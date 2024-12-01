@@ -298,7 +298,7 @@ app.get("/customer-wallet", async (req, res) => {
   }
 });
 
-app.get("/customer-wallet", async (req, res) => {
+app.get("/e-shop-vouchers", async (req, res) => {
   //2.2
   try {
     await mssql.connect(config);
