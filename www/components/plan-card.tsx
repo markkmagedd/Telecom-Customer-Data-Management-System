@@ -19,7 +19,7 @@ export function PlanCard({ name, price, smsOffered, minutesOffered, dataOffered,
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="text-center">
-        <p className="text-4xl font-bold text-primary mb-4">${price}<span className="text-sm font-normal text-muted-foreground">/month</span></p>
+        <p className="text-4xl font-bold text-primary mb-4">{price} EGP<span className="text-sm font-normal text-muted-foreground">/month</span></p>
         <ul className="space-y-2">
           <li className="flex items-center justify-between">
             <span className="flex items-center">
