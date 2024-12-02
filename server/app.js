@@ -600,7 +600,6 @@ app.post("/account-login-validation", async (req, res) => {
         data: result.recordset,
       });
     } else {
-      req.session.user = { mobileNum };
       res.json({
         error: null,
         success: true,

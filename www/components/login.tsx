@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "./ui/label"
+import { Redirect } from "next"
 import {
   Tabs,
   TabsContent,
@@ -19,6 +20,7 @@ import {
 } from "@/components/ui/tabs"
 import { Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { redirect } from "next/navigation"
 
 export function Login() {
     const [ username, setUsername ] = useState<string>("");
@@ -50,6 +52,7 @@ export function Login() {
         setUser(data.data)
         setResponse("Logged In Successfully")
         toast("Logged in Successfully")
+        redirect(`/customer/${data.data}`)
         setError("");
       }
       setLoading(false);
@@ -103,7 +106,6 @@ export function Login() {
               <h1 className="font-bold">{response}</h1>
               </div>
             }
-            {JSON.stringify(user)}
             </div>
             </form>
           </CardContent>
