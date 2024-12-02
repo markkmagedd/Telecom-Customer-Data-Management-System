@@ -548,12 +548,19 @@ app.get("/all-service-plans", async (req, res) => {
   try {
     await mssql.connect(config);
     const result = await mssql.query("Select * from allServicePlans");
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error: "There Are No Service Plan At The Moment !!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -593,10 +600,11 @@ app.post("/account-login-validation", async (req, res) => {
         data: result.recordset,
       });
     } else {
+      req.session.user = { mobileNum };
       res.json({
         error: null,
         success: true,
-        data: result.recordset,
+        data: mobileNum,
       });
     }
   } catch (err) {
@@ -632,11 +640,19 @@ app.post("/consumption", async (req, res) => {
       " SELECT * FROM dbo.Consumption(@planName , @startDate , @endDate)"
     );
 
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error: "Consumption Is Unavailable At The Moment !!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -663,12 +679,19 @@ app.post("/unsubscribed-plans", async (req, res) => {
     const request = new mssql.Request();
     request.input("mobileNum", mssql.Char(11), mobileNum);
     const result = await request.query("Exec Unsubscribed_Plans @mobileNum");
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error: "This Customer Is Subscribed To All Plans !!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -697,12 +720,19 @@ app.post("/usage-plan-current-month", async (req, res) => {
     const result = await request.query(
       "SELECT * FROM dbo.Usage_Plan_CurrentMonth(@mobileNum)"
     );
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error: "No Usage Available !!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -731,12 +761,20 @@ app.post("/cashback-wallet-customer", async (req, res) => {
     const result = await request.query(
       "SELECT * FROM dbo.Cashback_Wallet_Customer(@NID)"
     );
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error:
+          "There Are No Cashback Transactions Available For This Wallet !!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -754,12 +792,19 @@ app.get("/all-benefits", async (req, res) => {
     await mssql.connect(config);
     const request = new mssql.Request();
     const result = await request.query("SELECT * FROM allBenefits");
-
-    res.json({
-      error: null,
-      success: true,
-      data: result.recordset,
-    });
+    if (result.recordset.length === 0) {
+      res.json({
+        error: "There Are No Active Benefits Available At The Moment!!",
+        success: false,
+        data: null,
+      });
+    } else {
+      res.json({
+        error: null,
+        success: true,
+        data: result.recordset,
+      });
+    }
   } catch (err) {
     res.status(500).json({
       success: false,

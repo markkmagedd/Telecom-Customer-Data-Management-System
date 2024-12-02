@@ -27,6 +27,7 @@ export function Login() {
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ error, setError ] = useState<string>("");
     const [ response, setResponse ] = useState<string>("");
+    const [ user, setUser ] = useState<string>("");
     const loginToCustomerAccount = async (e: React.FormEvent) => {
       e.preventDefault();
       setLoading(true);
@@ -46,6 +47,7 @@ export function Login() {
         setError(data.error);
         toast(data.error);
       } else {
+        setUser(data.data)
         setResponse("Logged In Successfully")
         toast("Logged in Successfully")
         setError("");
@@ -101,6 +103,7 @@ export function Login() {
               <h1 className="font-bold">{response}</h1>
               </div>
             }
+            {JSON.stringify(user)}
             </div>
             </form>
           </CardContent>
