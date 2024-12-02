@@ -641,7 +641,7 @@ app.post("/consumption", async (req, res) => {
 
     if (result.recordset.length === 0) {
       res.json({
-        error: "Consumption Is Unavailable At The Moment !!",
+        error: "No Consumption Found",
         success: false,
         data: null,
       });
