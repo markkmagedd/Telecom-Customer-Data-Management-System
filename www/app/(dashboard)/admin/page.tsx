@@ -6,6 +6,7 @@ import { RemoveBenefitsInput } from "@/components/remove-benefits";
 import { ListSmsInput } from "@/components/sms-input";
 import { WalletIdInput } from "@/components/wallet-id-input";
 import { LinkedInput } from "@/components/linked-input";
+import { UpdateEarnedPointsInput } from "@/components/update-earned-points-input";
 
 export default async function Page() {
     return (
@@ -28,6 +29,8 @@ export default async function Page() {
         <AverageTransactionInput />
         <h1 className="font-bold text-lg">Show if Number is linked to wallet</h1>
         <LinkedInput />
+        <h1 className="font-bold text-lg">Update Points Earned</h1>
+        <UpdateEarnedPointsInput />
         </div>
         </main>
     )
