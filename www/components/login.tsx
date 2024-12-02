@@ -17,11 +17,42 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import { Loader2 } from "lucide-react"
+import { toast } from "sonner"
 
 export function Login() {
     const [ username, setUsername ] = useState<string>("");
     const [ password, setPassword ] = useState<string>("");
-    const [ mobileNumber, setMobileNumber ] = useState<number>();
+    const [ mobileNumber, setMobileNumber ] = useState<string>("");
+    const [ loading, setLoading ] = useState<boolean>(false);
+    const [ error, setError ] = useState<string>("");
+    const [ response, setResponse ] = useState<string>("");
+    const loginToCustomerAccount = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setLoading(true);
+      const res = await fetch('http://localhost:8080/account-login-validation', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({
+            mobileNum: mobileNumber,
+            password: password
+        })
+      })
+      const data = await res.json();
+      if(data.success === false ) {
+        setError(data.error);
+        toast(data.error);
+      } else {
+        setResponse("Logged In Successfully")
+        toast("Logged in Successfully")
+        setError("");
+      }
+      setLoading(false);
+      console.log(data);
+    }
   return (
     <Tabs defaultValue="customer" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
@@ -37,20 +68,42 @@ export function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <form autoComplete="off">
+            <form autoComplete="off" onSubmit={loginToCustomerAccount}>
             <div className="space-y-1">
               <Label>Mobile Number</Label>
-              <Input type="number" placeholder="01207451280" autoComplete="off" value={mobileNumber} onChange={((e) => {setMobileNumber(e.target.valueAsNumber)})} />
+              <Input required type="number" placeholder="01207451280" autoComplete="off" value={mobileNumber} onChange={((e) => {setMobileNumber(e.target.value)})} />
             </div>
             <div className="space-y-1">
               <Label>Password</Label>
-              <Input type="text" value={password} onChange={((e) => {setPassword(e.target.value)})} />
+              <Input required type="text" value={password} onChange={((e) => {setPassword(e.target.value)})} />
+            </div>
+            <div className="mt-4">
+            {
+              loading 
+              ?
+              <>
+              <Button className="w-full" type="submit" disabled><Loader2 className="size-4 mr-2 animate-spin" />Logging In</Button>
+              </>
+              : 
+              <>
+              <Button className="w-full" type="submit">Login</Button>
+              </>
+            }
+            {
+              error &&
+              <div className="mt-4 w-full rounded-md text-center p-2 bg-destructive">
+              <h1 className="font-bold">{error}</h1>
+              </div>
+            }
+            {
+              response &&
+              <div className="mt-4 w-full rounded-md text-center p-2 bg-green-500">
+              <h1 className="font-bold">{response}</h1>
+              </div>
+            }
             </div>
             </form>
           </CardContent>
-          <CardFooter>
-            <Button className="w-full">Login</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
       <TabsContent value="admin">

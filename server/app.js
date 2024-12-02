@@ -6,6 +6,7 @@ const adminPassword = "admin";
 const mssql = require("mssql");
 const bodyParser = require("body-parser")
 
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
