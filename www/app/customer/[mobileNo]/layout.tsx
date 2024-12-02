@@ -10,6 +10,11 @@ import { Separator } from "@/components/ui/separator"
 
 export default function LayoutNavigation({ children }: { children: React.ReactNode; }) {
   const path = usePathname();
+  function getPhoneNumber() {
+    const parts = path.split('/'); 
+    return parts[2];
+  }
+  const url = getPhoneNumber();
     return (
       <div className="grid min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[250px_1fr]">
         <div className="hidden border-r md:block">
@@ -21,54 +26,19 @@ export default function LayoutNavigation({ children }: { children: React.ReactNo
             </div>
             <div className="flex-1 ">
               <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2 mt-1">
-                <Link href="/admin" className={`${path.includes('/admin') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/customer/${url}`} className={`${path.includes('/overview') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                  <div className="border rounded-md border-foreground/30 dark:bg-black p-1 bg-white">
                  <Home className="size-4" />
                  </div>
                   Overview
                 </Link>
-                <Link href="/profiles" className={`${path.includes('/profiles') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href="/" className={`${path.includes('/profiles') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <Users className="h-4 w-4" />
                   </div>
-                  Profiles
+                  Total Consumption
                 </Link>
-                <Link href="/accounts" className={`${path.includes('/accounts') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
-                  <Users className="h-4 w-4" />
-                  </div>
-                  Accounts
-                </Link>
-                <Link href="/physical-stores" className={`${path.includes('/physical-stores') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
-                <Store className="h-4 w-4" />
-                </div>
-                  Physical Stores
-                </Link>
-                <Link href="/e-stores" className={`${path.includes('/e-stores') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
-                <Store className="h-4 w-4" />
-                </div>
-                  E-Stores
-                </Link>
-                <Link href="/tickets" className={`${path.includes('/tickets')? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
-                <Ticket className="h-4 w-4" />
-                </div>
-                  Tickets
-                </Link>
-                <Link href="/wallets" className={`${path.includes('/wallets') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
-                <Wallet className="h-4 w-4" />
-                </div>
-                  Wallets
-                </Link>
-                <Link href="/transactions" className={`${path.includes('/transactions') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
-                <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">     
-                <ArrowLeftRight className="h-4 w-4" />
-                </div>
-                  Transactions
-                </Link>
+                
               </nav>
             </div>
             <div className="p-4 w-full flex gap-2">
