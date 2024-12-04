@@ -1,4 +1,6 @@
 import { PlanCard } from "@/components/plan-card";
+import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default async function Page({ params } : { params: { mobileNo: string}}) {
     const result = await fetch('http://localhost:8080/usage-plan-current-month', {
@@ -21,17 +23,22 @@ export default async function Page({ params } : { params: { mobileNo: string}}) 
     }
     return (
         <main className="p-6">
-            <h1 className="font-bold text-3xl">Unsubscribed Plans</h1>
-            <div className="flex gap-4 mt-4">
+            <h1 className="font-bold text-3xl">Current Usage</h1>
+            <div className="gap-4 mt-4 flex flex-col">
             {/* {JSON.stringify(data.data)} */}
             {
                 data.data.map((consumption: any, index: any) => {
                     return (
-                        <div className="flex flex-row" key={index}>
+                        <Card className="" key={index}>
+                        <CardHeader>
+                            <CardTitle>Consumption</CardTitle>
+                        </CardHeader>
+                        <CardContent>
                         <h1 className="font-bold text-lg">Data Consumed : {consumption.data_consumption}</h1>
                         <h1 className="font-bold text-lg">Minutes Used : {consumption.minutes_used}</h1>
                         <h1 className="font-bold text-lg">SMS Sent : {consumption.SMS_sent}</h1>
-                        </div>
+                        </CardContent>
+                        </Card>
                     )
                 })
             }
