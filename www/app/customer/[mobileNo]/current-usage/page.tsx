@@ -1,7 +1,7 @@
 import { PlanCard } from "@/components/plan-card";
 
 export default async function Page({ params } : { params: { mobileNo: string}}) {
-    const result = await fetch('http://localhost:8080/unsubscribed-plans', {
+    const result = await fetch('http://localhost:8080/usage-plan-current-month', {
         method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -21,13 +21,16 @@ export default async function Page({ params } : { params: { mobileNo: string}}) 
     }
     return (
         <main className="p-6">
-            <h1 className="font-bold text-3xl">Offered Plans :</h1>
-            <div className="flex flex-row gap-4 mt-4">
+            <h1 className="font-bold text-3xl">Unsubscribed Plans</h1>
+            <div className="flex gap-4 mt-4">
+            {/* {JSON.stringify(data.data)} */}
             {
-                data.data.map((plan: any) => {
+                data.data.map((consumption: any, index: any) => {
                     return (
-                        <div key={plan.planID} className="flex">
-                        <PlanCard name={plan.name} description={plan.description} price={plan.price} smsOffered={plan.SMS_offered} minutesOffered={plan.minutes_offered} dataOffered={plan.data_offered}/>
+                        <div className="flex flex-row" key={index}>
+                        <h1 className="font-bold text-lg">Data Consumed : {consumption.data_consumption}</h1>
+                        <h1 className="font-bold text-lg">Minutes Used : {consumption.minutes_used}</h1>
+                        <h1 className="font-bold text-lg">SMS Sent : {consumption.SMS_sent}</h1>
                         </div>
                     )
                 })
