@@ -847,10 +847,10 @@ app.post("/ticket-account-customer", async (req, res) => {
   }
 });
 
-app.post("/account-highest-voucher", async (req, res) => {
+app.get("/account-highest-voucher/:mobileNum", async (req, res) => {
   //4.3
   try {
-    const { mobileNum } = req.body;
+    const mobileNum = req.params.mobileNum;
     if (!mobileNum) {
       return res.status(400).json({
         success: false,
