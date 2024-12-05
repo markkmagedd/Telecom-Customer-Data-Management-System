@@ -1181,7 +1181,6 @@ app.post("/redeem-voucher-points", async (req, res) => {
     const result = await request.query(
       "Exec Redeem_voucher_points @mobileNum , @voucherId"
     );
-
     res.json({
       error: null,
       success: true,
