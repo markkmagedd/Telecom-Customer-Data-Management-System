@@ -1071,7 +1071,6 @@ app.post("/initiate-plan-payment", async (req, res) => {
     const result = await request.query(
       "Exec Initiate_plan_payment @mobileNum, @amount, @paymentMethod,@planId"
     );
-
     res.json({
       error: null,
       success: true,
