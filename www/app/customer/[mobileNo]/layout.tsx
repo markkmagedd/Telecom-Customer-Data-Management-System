@@ -86,40 +86,13 @@ export default function LayoutNavigation({ children }: { children: React.ReactNo
                   </div>
                   Extra Amount
                 </Link>
-                <Link href={`/customer/${url}/renew-subscription`} className={`${path.includes('/renew-subscription') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
+                <Link href={`/customer/${url}/renew-recharge`} className={`${path.includes('/renew-recharge') ? 'bg-accent text-foreground' : ' text-muted-foreground'} font-semibold flex items-center gap-3 rounded-md px-3 py-2 text-primary transition-all hover:text-primary hover:bg-accent duration-200`}>
                 <div className="border border-foreground/30 rounded-md dark:bg-black p-1 bg-white">
                   <Users className="h-4 w-4" />
                   </div>
-                  Renew Subscription
+                  Renew / Recharge
                 </Link>
               </nav>
-            </div>
-            <div className="p-4 w-full flex gap-2">
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant={"outline"} className="w-full bg-inherit border-foreground/20">
-                    Admin
-                    <ChevronsUpDown className="ml-auto size-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  side="top"
-                  className="w-[--radix-popper-anchor-width] bg-background space-y-2"
-                >
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Switch Workspace</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/settings"} className="flex align-middle items-center"><Settings2 className="size-4 mr-2" />Settings</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" asChild>
-                  <Link href={"/billing"} className="flex align-middle items-center"><Banknote className="size-4 mr-2" />Billing</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
-                    <span className="flex align-middle items-center"><LogOut className="size-4 mr-2" />Sign out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
             </div>
           </div>
         </div>
