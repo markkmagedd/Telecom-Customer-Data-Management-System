@@ -44,9 +44,6 @@ export function PlanCard({ name, price, smsOffered, minutesOffered, dataOffered,
           </li>
         </ul>
       </CardContent>
-      <CardFooter>
-        <Button className="w-full">Choose Plan</Button>
-      </CardFooter>
     </Card>
   )
 }

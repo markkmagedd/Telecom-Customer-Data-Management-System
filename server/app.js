@@ -1016,10 +1016,10 @@ app.get("/all-shops", async (req, res) => {
   }
 });
 
-app.post("/subscribed-plans-5-months", async (req, res) => {
+app.get("/subscribed-plans-5-months/:mobileNum", async (req, res) => {
   //5.2
   try {
-    const { mobileNum } = req.body;
+    const mobileNum = req.params.mobileNum;
     if (!mobileNum) {
       return res.status(400).json({
         success: false,
@@ -1033,7 +1033,6 @@ app.post("/subscribed-plans-5-months", async (req, res) => {
     const result = await request.query(
       "SELECT * FROM dbo.Subscribed_plans_5_Months(@mobileNum)"
     );
-
     res.json({
       error: null,
       success: true,
