@@ -1179,7 +1179,7 @@ app.post("/redeem-voucher-points", async (req, res) => {
     request.input("mobileNum", mssql.Char(11), mobileNum);
     request.input("voucherId", mssql.Int, voucherId);
     const result = await request.query(
-      "Exec Redeem_voucher_points @mobile_num , @voucherId"
+      "Exec Redeem_voucher_points @mobileNum , @voucherId"
     );
 
     res.json({
