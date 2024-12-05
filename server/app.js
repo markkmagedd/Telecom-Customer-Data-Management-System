@@ -959,10 +959,10 @@ app.post("/extra-plan-amount", async (req, res) => {
   }
 });
 
-app.post("/top-successful-payments", async (req, res) => {
+app.get("/top-successful-payments/:mobileNum", async (req, res) => {
   //4.6
   try {
-    const { mobileNum } = req.body;
+    const mobileNum = req.params.mobileNum;
     if (!mobileNum) {
       return res.status(400).json({
         success: false,
@@ -974,7 +974,7 @@ app.post("/top-successful-payments", async (req, res) => {
     const request = new mssql.Request();
     request.input("mobileNum", mssql.Char(11), mobileNum);
     const result = await request.query(
-      "Exec Top_Successful_Payments @mobile_num"
+      "Exec Top_Successful_Payments @mobileNum"
     );
 
     res.json({
