@@ -13,10 +13,10 @@ export default async function Page({ params } : { params: { mobileNo:string } } 
         })
     });
     const data = await res.json(); 
-    console.log(data);
     return (
         <main className="p-6">
-        {JSON.stringify(data)}
+        <h1 className="font-bold text-xl">Accepted Transactions during the last year : {data.data[0][""][0]}</h1>
+        <h1 className="font-bold text-xl">Total amount of earned points : {data.data[0][""][1]}</h1>
         </main>
     )
 }

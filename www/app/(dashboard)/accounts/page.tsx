@@ -18,19 +18,28 @@ export default async function Page() {
     return (
         <main className="p-6">
         <h1 className="font-bold text-3xl">Customers Accounts</h1>
-        <div className="flex flex-col gap-4 mt-4">
-        {/* <AccountInput />
-        <h1 className="font-bold text-3xl">Show Usage By Number</h1>
-        <MobileDateInput />
-        <h1 className="font-bold text-3xl">Delete All Benefits</h1>
-        <RemoveBenefitsInput />
-        <h1 className="font-bold text-3xl">List All SMS</h1>
-        <ListSmsInput /> */}
+        <div className="flex sm:flex-row flex-col gap-4 mt-4 items-start">
        {
         data.data.map((account:any) => {
             return (
-                <div key={account.mobileNo}>
-                    <CustomerAccount mobileNumber={account.mobileNo} name={account.name} description={account.description} />
+                <div className="flex items-start" key={account.mobileNo}>
+                    <CustomerAccount 
+                    mobileNo={account.mobileNo} 
+                    pass={account.pass} 
+                    balance={account.balance} 
+                    account_type={account.account_type} 
+                    start_date={account.start_date} 
+                    status={account.status} 
+                    points={account.points} 
+                    nationalID={account.nationalID} 
+                    planID={account.planID} 
+                    name={account.name} 
+                    price={account.price} 
+                    SMS_offered={account.SMS_offered} 
+                    minutes_offered={account.minutes_offered} 
+                    data_offered={account.data_offered} 
+                    description={account.description} 
+                    />
                 </div>
             )
         })

@@ -638,7 +638,6 @@ app.post("/consumption", async (req, res) => {
     const result = await request.query(
       " SELECT * FROM dbo.Consumption(@planName , @startDate , @endDate)"
     );
-
     if (result.recordset.length === 0) {
       res.json({
         error: "No Consumption Found",
@@ -1108,7 +1107,6 @@ app.post("/payment-wallet-cashback", async (req, res) => {
     const result = await request.query(
       " Exec Payment_wallet_cashback @mobileNum , @paymentId , @benefitId"
     );
-    console.log(result);
     res.json({
       error: null,
       success: true,

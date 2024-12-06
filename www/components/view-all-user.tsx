@@ -12,7 +12,6 @@ export function ViewAll() {
     const [ result, setResult ] = useState<any>("");
     const redirectToAccounts = async (e: React.FormEvent) => {
         e.preventDefault();
-        // redirect(`/customer/${planId}?date=${fromDate}`);
         const res = await fetch('http://localhost:8080/consumption', {
             method: "POST",
             headers: {
@@ -32,7 +31,7 @@ export function ViewAll() {
         <div>
         <div className="flex w-full items-center gap-4">
             <form className="flex w-full items-center gap-4" onSubmit={redirectToAccounts}>
-            <Input required placeholder="Plan Id" value={planId} onChange={((e) => {setPlanId(e.target.value)})}/>
+            <Input required placeholder="Plan Name ( basic plan )" value={planId} onChange={((e) => {setPlanId(e.target.value)})}/>
             <Input required placeholder="from" value={fromDate} onChange={((e) => {setFromDate(e.target.value)})} />
             <Input required placeholder="to" value={toDate} onChange={((e) => {setToDate(e.target.value)})} />
             <Button type="submit">

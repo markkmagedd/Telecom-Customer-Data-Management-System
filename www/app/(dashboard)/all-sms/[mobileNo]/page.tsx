@@ -23,7 +23,8 @@ export default async function Page({ params } : { params: { mobileNo:string } } 
              <h1 className="font-bold text-xl">No Customer account Found!</h1>
             </>
         } */}
-        {JSON.stringify(data)}
+        <h1 className="font-bold text-xl">Sms Offers </h1>
+        {JSON.stringify(data.data)}
         </main>
     )
 }

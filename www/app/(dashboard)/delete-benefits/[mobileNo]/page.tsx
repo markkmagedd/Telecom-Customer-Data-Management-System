@@ -28,7 +28,7 @@ export default async function Page({ params, searchParams } : { params: { mobile
             data.success === true 
             && 
             <>
-            <h1 className="font-bold text-xl">Removed All Benefits</h1>
+            <h1 className="font-bold text-xl">Removed All Benefits Successfully!</h1>
             </>
         } 
         {
@@ -38,7 +38,6 @@ export default async function Page({ params, searchParams } : { params: { mobile
             <h1 className="font-bold text-xl">Failed to remove all benefits</h1>
             </>
         } 
-        {JSON.stringify(data)}
         </main>
     )
 }

@@ -30,6 +30,20 @@ export function Login() {
     const [ error, setError ] = useState<string>("");
     const [ response, setResponse ] = useState<string>("");
     const [ user, setUser ] = useState<string>("");
+    const loginToAdminAccount = async (e:React.FormEvent) => {
+      e.preventDefault();
+      setLoading(true);
+      if(username && password === "admin") {
+        setResponse("Logged In Successfully")
+        toast("Logged in Successfully")
+        setLoading(false);
+        redirect(`/admin`)
+      } else {
+        setLoading(false);
+        setError("Incorrect Credentials for Admin Account");
+        toast("Incorrect Credentials for Admin Account");
+      }
+    }
     const loginToCustomerAccount = async (e: React.FormEvent) => {
       e.preventDefault();
       setLoading(true);
@@ -52,8 +66,7 @@ export function Login() {
         setUser(data.data)
         setResponse("Logged In Successfully")
         toast("Logged in Successfully")
-        redirect(`/customer/${data.data}`)
-        setError("");
+        redirect(`/customer/${data.data}/overview`)
       }
       setLoading(false);
       console.log(data);
@@ -73,14 +86,14 @@ export function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
-            <form autoComplete="off" onSubmit={loginToCustomerAccount}>
+            <form autoComplete="off" onSubmit={loginToCustomerAccount} className="space-y-2">
             <div className="space-y-1">
               <Label>Mobile Number</Label>
               <Input required type="number" placeholder="01207451280" autoComplete="off" value={mobileNumber} onChange={((e) => {setMobileNumber(e.target.value)})} />
             </div>
             <div className="space-y-1">
               <Label>Password</Label>
-              <Input required type="text" value={password} onChange={((e) => {setPassword(e.target.value)})} />
+              <Input required type="password"value={password} onChange={((e) => {setPassword(e.target.value)})} />
             </div>
             <div className="mt-4">
             {
@@ -120,6 +133,7 @@ export function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
+            <form onSubmit={loginToAdminAccount} className="space-y-2">
             <div className="space-y-1">
               <Label htmlFor="current">Username</Label>
               <Input type="text" placeholder="John Doe" value={username} onChange={((e) => {setUsername(e.target.value)})} />
@@ -128,10 +142,33 @@ export function Login() {
               <Label htmlFor="new">Password</Label>
               <Input type="password" value={password} onChange={((e) => {setPassword(e.target.value)})} />
             </div>
+            <div className="mt-4">
+            {
+              loading 
+              ?
+              <>
+              <Button className="w-full" type="submit" disabled><Loader2 className="size-4 mr-2 animate-spin" />Logging In</Button>
+              </>
+              : 
+              <>
+              <Button className="w-full" type="submit">Login</Button>
+              </>
+            }
+            {
+              error &&
+              <div className="mt-4 w-full rounded-md text-center p-2 bg-destructive">
+              <h1 className="font-bold">{error}</h1>
+              </div>
+            }
+            {
+              response &&
+              <div className="mt-4 w-full rounded-md text-center p-2 bg-green-500">
+              <h1 className="font-bold">{response}</h1>
+              </div>
+            }
+            </div>
+            </form>
           </CardContent>
-          <CardFooter>
-            <Button className="w-full">Login</Button>
-          </CardFooter>
         </Card>
       </TabsContent>
     </Tabs>

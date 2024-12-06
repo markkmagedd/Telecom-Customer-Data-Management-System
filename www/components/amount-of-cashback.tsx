@@ -49,7 +49,7 @@ export function AmountOfCashback({ mobileNum } : { mobileNum: string}) {
             result.success === true 
             &&
             <>
-            {JSON.stringify(result.data)}
+            <h1 className="font-bold text-lg">Cashback Returned To Wallet Successfully!</h1>
             </>
         }
         </div>

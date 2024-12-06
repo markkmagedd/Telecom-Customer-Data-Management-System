@@ -13,7 +13,7 @@ interface PlanCardProps {
 
 export function PlanCard({ name, price, smsOffered, minutesOffered, dataOffered, description }: PlanCardProps) {
   return (
-    <Card className="w-full max-w-sm border-2 hover:border-foreground/20 transition-colors duration-300">
+    <Card className="w-full max-w-sm border hover:border-foreground/20 transition-colors duration-300">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl font-bold">{name}</CardTitle>
         <CardDescription>{description}</CardDescription>

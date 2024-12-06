@@ -1,6 +1,8 @@
 import { PlanCard } from "@/components/plan-card";
 import TransactionCard from "@/components/transaction";
 import { RedeemVoucher } from "@/components/redeem-voucher";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Page({ params } : { params: { mobileNo: string}}) {
     const result = await fetch(`http://localhost:8080/top-successful-payments/${await(params.mobileNo)}`, {
@@ -36,6 +38,11 @@ export default async function Page({ params } : { params: { mobileNo: string}}) 
     return (
         <main className="p-6">
             <h1 className="font-bold text-3xl">Overview</h1>
+            <Button asChild>
+                <Link href={"/shops"}>
+                View All Shops
+                </Link>
+            </Button>
             <div className="mt-4">
             <RedeemVoucher mobileNum={await(params.mobileNo)} />
             </div>
