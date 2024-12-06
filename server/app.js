@@ -1108,7 +1108,7 @@ app.post("/payment-wallet-cashback", async (req, res) => {
     const result = await request.query(
       " Exec Payment_wallet_cashback @mobileNum , @paymentId , @benefitId"
     );
-
+    console.log(result);
     res.json({
       error: null,
       success: true,
