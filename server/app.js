@@ -4,7 +4,7 @@ const cors = require("cors");
 const adminUsername = "admin";
 const adminPassword = "admin";
 const mssql = require("mssql");
-const bodyParser = require("body-parser")
+const bodyParser = require("body-parser");
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ const config = {
   user: "sa", // Your database username
   password: "VeryStr0ngP@ssw0rd", // Your database password
   server: "localhost", // Your SQL Server hostname or IP
-  database: "Team102_test", // Your database name
+  database: "Milestone2DB_24", // Your database name
   options: {
     encrypt: true, // Use encryption for data transfer (recommended)
     trustServerCertificate: true, // If you're using a self-signed certificate
